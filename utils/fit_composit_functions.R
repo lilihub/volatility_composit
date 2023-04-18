@@ -12,7 +12,7 @@ fit_composit_model <- function(choice_file, clinical_file, nC, cov_name, model_n
     file = paste0("stan_files/", model_name),
     data = data_list,
     warmup = 1000,
-    iter = 3000,
+    iter = 4000,
     chains = 4
   )
   

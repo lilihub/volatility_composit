@@ -1,5 +1,5 @@
 rm(list=ls())
-setwd("~/Documents/rstudio/volatility1")
+setwd("~/Documents/Rstudio/volatility_composit")
 library(rstan)
 library(bayesplot)
 library(shinystan)
@@ -29,9 +29,9 @@ CBT_baseline_composit1.1= fit_composit_model(choice_file = "CBT_baseline_matched
                                              save_name = "CBT_baseline_composit1.1")
 
 CBT_baseline_composit2= fit_composit_model(choice_file = "CBT_baseline_matched", 
-                                           clinical_file = "clinical_CBT_baseline_scale", 
+                                           clinical_file = "clinical_CBT_baseline", 
                                            nC = 1,
-                                           cov_name = "STAI_total",
+                                           cov_name = "AD",
                                            model_name = "alt_composit2.stan",
                                            save_name = "CBT_baseline_composit2")
 CBT_baseline_composit2.1 = fit_composit_model(choice_file = "CBT_baseline_matched", 

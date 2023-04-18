@@ -84,7 +84,7 @@ wrap_up <- function(schedule_path, save_path, ID_length, original_data_path){
     dat_list[[i]] <- dat
   }
   dat_df <- dplyr::bind_rows(dat_list)
-  write.csv(dat_df, paste0("~/Documents/rstudio/volatility1/clean_data/", save_path, ".csv"), row.names = FALSE)
+  write.csv(dat_df, paste0(save_path, ".csv"), row.names = FALSE)
 }
 
 ## function used to combine schedule1 and schedule2
