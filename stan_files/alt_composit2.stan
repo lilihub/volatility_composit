@@ -66,7 +66,7 @@ transformed parameters {
 model {
   // Hyperparameters
   mu_pr  ~ normal(0, 1);
-  sigma ~ cauchy(0, 2.5);
+  sigma ~ normal(0, 0.2);
   
   A_base_pr ~ normal(0, 1);
   A_vs_pr ~ normal(0, 1);
