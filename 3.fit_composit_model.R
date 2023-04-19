@@ -1,5 +1,5 @@
 rm(list=ls())
-setwd("~/Documents/Rstudio/volatility_composit")
+setwd("~/volatility_composit")
 library(rstan)
 library(bayesplot)
 library(shinystan)

@@ -12,15 +12,15 @@ fit_composit_model <- function(choice_file, clinical_file, nC, cov_name, model_n
     file = paste0("stan_files/", model_name),
     data = data_list,
     warmup = 1000,
-    iter = 4000,
+    iter = 3000,
     chains = 4
   )
   
   saveRDS(fit, file = paste0("fitted_data/", save_name, "_fit.rda"))
-  fit_extract <- rstan::extract(fit)
-  output = list(raw_data = raw_data, list_data = data_list, fit = fit_extract)
-  saveRDS(output, file = paste0("fitted_data/", save_name, ".rda"))
-  return(output)
+  # fit_extract <- rstan::extract(fit)
+  # output = list(raw_data = raw_data, list_data = data_list, fit = fit_extract)
+  # saveRDS(output, file = paste0("fitted_data/", save_name, ".rda"))
+  return(fit)
 }
 
 frame2list <- function(df, df1, nC, cov_name){
