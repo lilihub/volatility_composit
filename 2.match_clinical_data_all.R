@@ -58,8 +58,8 @@ write.csv(clinical_CBT_followup,
 
 ############################# SSRI_baseline 95 participants####################
 clinical_temp = subset(clinical_data, clinical_data$treatment == 'ssri' &
-                       !is.na(clinical_data$AD) & !is.na(clinical_data$AD_fu) &
-                       !(clinical_data$subjID %in% incomplete_cases$ncPpts))
+                         !is.na(clinical_data$AD) & !is.na(clinical_data$AD_fu) &
+                         !(clinical_data$subjID %in% incomplete_cases$ncPpts))
 SSRI_baseline = read.csv("clean_data/SSRI_baseline.csv")
 
 # format ID_short in clinical data
@@ -92,6 +92,46 @@ write.csv(SSRI_followup_matched,
 clinical_SSRI_followup = subset(clinical_temp, clinical_temp$subjID %in% intersectIDs)
 write.csv(clinical_SSRI_followup,
           file = 'clean_data/clinical_SSRI_followup.csv',
+          row.names = FALSE)
+
+
+
+############################# Control_baseline 95 participants####################
+clinical_temp = subset(clinical_data, clinical_data$treatment == 'control' &
+                         !is.na(clinical_data$AD) & !is.na(clinical_data$AD_fu) &
+                         !(clinical_data$subjID %in% incomplete_cases$ncPpts))
+control_baseline = read.csv("clean_data/Control_baseline.csv")
+
+# format ID_short in clinical data
+control_baseline['subjID'] <- sub("H1", "H", control_baseline$subjID)
+intersectIDs = intersect(clinical_temp$subjID, unique(control_baseline$subjID))
+# subset CBT_baseline (subjects with clinical match)
+control_baseline_matched = subset(control_baseline,
+                                  control_baseline$subjID %in% intersectIDs)
+write.csv(control_baseline_matched,
+          file = 'clean_data/control_baseline_matched.csv',
+          row.names = FALSE)
+clinical_control_baseline = subset(clinical_temp, clinical_temp$subjID %in% intersectIDs)
+write.csv(clinical_control_baseline,
+          file = 'clean_data/clinical_control_baseline.csv',
+          row.names = FALSE)
+
+
+############################# Control_followup 95 participants####################
+control_followup = read.csv("clean_data/Control_followup.csv")
+
+# format ID_short in clinical data
+control_followup['subjID'] <- sub("H4", "H", control_followup$subjID)
+intersectIDs = intersect(clinical_temp$subjID,unique(control_followup$subjID))
+# subset CBT_baseline (subjects with clinical match)
+control_followup_matched = subset(control_followup,
+                                  control_followup$subjID %in% intersectIDs)
+write.csv(control_followup_matched,
+          file = 'clean_data/control_followup_matched.csv',
+          row.names = FALSE)
+clinical_control_followup = subset(clinical_temp, clinical_temp$subjID %in% intersectIDs)
+write.csv(clinical_control_followup,
+          file = 'clean_data/clinical_control_followup.csv',
           row.names = FALSE)
 
 
