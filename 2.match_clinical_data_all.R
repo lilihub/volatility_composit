@@ -30,6 +30,26 @@ write.csv(clinical_CBT_baseline,
 #           file = 'clean_data/clinical_CBT_baseline_scale.csv',
 #           row.names = FALSE)
 
+### Extract stable and volatile data ####
+setwd("~/Documents/Rstudio/volatility_composit")
+CBT_baseline_matched = read.csv("clean_data/CBT_baseline_matched.csv")
+CBT_baseline_stable = subset(CBT_baseline_matched, CBT_baseline_matched$status == -1)
+CBT_baseline_volatile = subset(CBT_baseline_matched, CBT_baseline_matched$status == 1)
+write.csv(CBT_baseline_stable,
+          file = 'clean_data/CBT_baseline_matched_stable.csv',
+          row.names = FALSE)
+write.csv(CBT_baseline_volatile,
+          file = 'clean_data/CBT_baseline_matched_volatile.csv',
+          row.names = FALSE)
+
+### Join choice data and clinical data ####
+CBT_baseline_matched = read.csv("clean_data/CBT_baseline_matched.csv")
+clinical_CBT_baseline = read.csv("clean_data/clinical_CBT_baseline.csv")
+CBT_baseline_merged = merge(CBT_baseline_matched, clinical_CBT_baseline)
+write.csv(CBT_baseline_merged,
+          file = 'clean_data/CBT_baseline_merged.csv',
+          row.names = FALSE)
+
 
 ############################# CBT_followup 682 participants####################
 CBT_followup = read.csv("clean_data/CBT_followup.csv")
@@ -55,6 +75,26 @@ write.csv(clinical_CBT_followup,
 #           file = 'clean_data/clinical_CBT_followup_scale.csv',
 #           row.names = FALSE)
 
+### Extract stable and volatile data ####
+CBT_followup_matched = read.csv("clean_data/CBT_followup_matched.csv")
+CBT_followup_stable = subset(CBT_followup_matched, CBT_followup_matched$status == -1)
+CBT_followup_volatile = subset(CBT_followup_matched, CBT_followup_matched$status == 1)
+write.csv(CBT_followup_stable,
+          file = 'clean_data/CBT_followup_matched_stable.csv',
+          row.names = FALSE)
+write.csv(CBT_followup_volatile,
+          file = 'clean_data/CBT_followup_matched_volatile.csv',
+          row.names = FALSE)
+
+### Join choice data and clinical data ######
+setwd("~/Documents/Rstudio/volatility_composit")
+CBT_followup_matched = read.csv("clean_data/CBT_followup_matched.csv")
+clinical_CBT_followup = read.csv("clean_data/clinical_CBT_followup.csv")
+CBT_followup_merged = merge(CBT_followup_matched, clinical_CBT_followup)
+write.csv(CBT_followup_merged,
+          file = 'clean_data/CBT_followup_merged.csv',
+          row.names = FALSE)
+
 
 ############################# SSRI_baseline 95 participants####################
 clinical_temp = subset(clinical_data, clinical_data$treatment == 'ssri' &
@@ -76,6 +116,26 @@ write.csv(clinical_SSRI_baseline,
           file = 'clean_data/clinical_SSRI_baseline.csv',
           row.names = FALSE)
 
+### Extract stable and volatile data ####
+SSRI_baseline_matched = read.csv("clean_data/SSRI_baseline_matched.csv")
+SSRI_baseline_stable = subset(SSRI_baseline_matched, SSRI_baseline_matched$status == -1)
+SSRI_baseline_volatile = subset(SSRI_baseline_matched, SSRI_baseline_matched$status == 1)
+write.csv(SSRI_baseline_stable,
+          file = 'clean_data/SSRI_baseline_matched_stable.csv',
+          row.names = FALSE)
+write.csv(SSRI_baseline_volatile,
+          file = 'clean_data/SSRI_baseline_matched_volatile.csv',
+          row.names = FALSE)
+
+
+### Join choice data and clinical data ######
+SSRI_baseline_matched = read.csv("clean_data/SSRI_baseline_matched.csv")
+clinical_SSRI_baseline = read.csv("clean_data/clinical_SSRI_baseline.csv")
+SSRI_baseline_merged = merge(SSRI_baseline_matched, clinical_SSRI_baseline)
+write.csv(SSRI_baseline_merged,
+          file = 'clean_data/SSRI_baseline_merged.csv',
+          row.names = FALSE)
+
 
 ############################# SSRI_followup 95 participants####################
 SSRI_followup = read.csv("clean_data/SSRI_followup.csv")
@@ -94,13 +154,32 @@ write.csv(clinical_SSRI_followup,
           file = 'clean_data/clinical_SSRI_followup.csv',
           row.names = FALSE)
 
+### Extract stable and volatile data ####
+SSRI_followup_matched = read.csv("clean_data/SSRI_followup_matched.csv")
+SSRI_followup_stable = subset(SSRI_followup_matched, SSRI_followup_matched$status == -1)
+SSRI_followup_volatile = subset(SSRI_followup_matched, SSRI_followup_matched$status == 1)
+write.csv(SSRI_followup_stable,
+          file = 'clean_data/SSRI_followup_matched_stable.csv',
+          row.names = FALSE)
+write.csv(SSRI_followup_volatile,
+          file = 'clean_data/SSRI_followup_matched_volatile.csv',
+          row.names = FALSE)
+
+### Join choice data and clinical data ######
+SSRI_followup_matched = read.csv("clean_data/SSRI_followup_matched.csv")
+clinical_SSRI_followup = read.csv("clean_data/clinical_SSRI_followup.csv")
+SSRI_followup_merged = merge(SSRI_followup_matched, clinical_SSRI_followup)
+write.csv(SSRI_followup_merged,
+          file = 'clean_data/SSRI_followup_merged.csv',
+          row.names = FALSE)
+
 
 
 ############################# Control_baseline 95 participants####################
 clinical_temp = subset(clinical_data, clinical_data$treatment == 'control' &
                          !is.na(clinical_data$AD) & !is.na(clinical_data$AD_fu) &
                          !(clinical_data$subjID %in% incomplete_cases$ncPpts))
-control_baseline = read.csv("clean_data/Control_baseline.csv")
+control_baseline = read.csv("clean_data/control_baseline.csv")
 
 # format ID_short in clinical data
 control_baseline['subjID'] <- sub("H1", "H", control_baseline$subjID)
@@ -116,9 +195,28 @@ write.csv(clinical_control_baseline,
           file = 'clean_data/clinical_control_baseline.csv',
           row.names = FALSE)
 
+### Extract stable and volatile data ####
+control_baseline_matched = read.csv("clean_data/control_baseline_matched.csv")
+control_baseline_stable = subset(control_baseline_matched, control_baseline_matched$status == -1)
+control_baseline_volatile = subset(control_baseline_matched, control_baseline_matched$status == 1)
+write.csv(control_baseline_stable,
+          file = 'clean_data/control_baseline_matched_stable.csv',
+          row.names = FALSE)
+write.csv(control_baseline_volatile,
+          file = 'clean_data/control_baseline_matched_volatile.csv',
+          row.names = FALSE)
+
+### Join choice data and clinical data ######
+control_baseline_matched = read.csv("clean_data/control_baseline_matched.csv")
+clinical_control_baseline = read.csv("clean_data/clinical_control_baseline.csv")
+control_baseline_merged = merge(control_baseline_matched, clinical_control_baseline)
+write.csv(control_baseline_merged,
+          file = 'clean_data/control_baseline_merged.csv',
+          row.names = FALSE)
+
 
 ############################# Control_followup 95 participants####################
-control_followup = read.csv("clean_data/Control_followup.csv")
+control_followup = read.csv("clean_data/control_followup.csv")
 
 # format ID_short in clinical data
 control_followup['subjID'] <- sub("H4", "H", control_followup$subjID)
@@ -134,6 +232,25 @@ write.csv(clinical_control_followup,
           file = 'clean_data/clinical_control_followup.csv',
           row.names = FALSE)
 
+### Extract stable and volatile data ####
+control_followup_matched = read.csv("clean_data/control_followup_matched.csv")
+control_followup_stable = subset(control_followup_matched, control_followup_matched$status == -1)
+control_followup_volatile = subset(control_followup_matched, control_followup_matched$status == 1)
+write.csv(control_followup_stable,
+          file = 'clean_data/control_followup_matched_stable.csv',
+          row.names = FALSE)
+write.csv(control_followup_volatile,
+          file = 'clean_data/control_followup_matched_volatile.csv',
+          row.names = FALSE)
+
+
+### Join choice data and clinical data ######
+control_followup_matched = read.csv("clean_data/control_followup_matched.csv")
+clinical_Control_followup = read.csv("clean_data/clinical_control_followup.csv")
+control_followup_merged = merge(control_followup_matched, clinical_control_followup)
+write.csv(control_followup_merged,
+          file = 'clean_data/control_followup_merged.csv',
+          row.names = FALSE)
 
 
 

@@ -9,6 +9,7 @@ library(dplyr)
 library(gtools)
 source("utils/processer_utils.R")
 original_data_path = '~/Documents/Rstudio/volatility_composit/all_data/'
+
 ####### CBT Baseline (csv files in this folder are in the same format) ######
 #################### Don't need to run this block every time ############
 setwd("~/Documents/Rstudio/volatility_composit/all_data/CBT/Baseline")
@@ -31,12 +32,20 @@ wrap_up(schedule_path="schedule2",
         ID_length = 6,
         original_data_path)
 
-## combine schedule1 data and schedule2 data
+### Separate schedule and volatility  ####
 setwd("~/Documents/Rstudio/volatility_composit")
+# separate_volatility("clean_data/CBT_baseline_schedule1", 
+#                     "clean_data/CBT_baseline_schedule1_stable", 
+#                     "clean_data/CBT_baseline_schedule1_volatile")
+# separate_volatility("clean_data/CBT_baseline_schedule2",
+#                     "clean_data/CBT_baseline_schedule2_stable",
+#                     "clean_data/CBT_baseline_schedule2_volatile")
+
+## combine schedule1 data and schedule2 data
 combine_schedule("clean_data/CBT_baseline_schedule1", 
                  "clean_data/CBT_baseline_schedule2", 
                  "clean_data/CBT_baseline")
-CBT_baseline = read.csv("clean_data/CBT_baseline.csv")
+# CBT_baseline = read.csv("clean_data/CBT_baseline.csv")
 
 
 ####### CBT Followup (an extra column in some of the csv files) ######
@@ -69,12 +78,21 @@ wrap_up(schedule_path="schedule2",
         ID_length = 6,
         original_data_path)
 
-## combine schedule1 data and schedule2 data
+### Separate schedule and volatility  ####
 setwd("~/Documents/Rstudio/volatility_composit")
+# separate_volatility("clean_data/CBT_followup_schedule1", 
+#                     "clean_data/CBT_followup_schedule1_stable", 
+#                     "clean_data/CBT_followup_schedule1_volatile")
+# separate_volatility("clean_data/CBT_followup_schedule2",
+#                     "clean_data/CBT_followup_schedule2_stable",
+#                     "clean_data/CBT_followup_schedule2_volatile")
+
+
+## combine schedule1 data and schedule2 data
 combine_schedule("clean_data/CBT_followup_schedule1", 
                  "clean_data/CBT_followup_schedule2", 
                  "clean_data/CBT_followup")
-CBT_followup = read.csv("clean_data/CBT_followup.csv")
+# CBT_followup = read.csv("clean_data/CBT_followup.csv")
 
 
 
@@ -105,12 +123,20 @@ wrap_up(schedule_path="schedule2",
         ID_length = 5,
         original_data_path)
 
-## combine schedule1 data and schedule2 data
+### Separate schedule and volatility  ####
 setwd("~/Documents/Rstudio/volatility_composit")
+# separate_volatility("clean_data/SSRI_baseline_schedule1", 
+#                     "clean_data/SSRI_baseline_schedule1_stable", 
+#                     "clean_data/SSRI_baseline_schedule1_volatile")
+# separate_volatility("clean_data/SSRI_baseline_schedule2",
+#                     "clean_data/SSRI_baseline_schedule2_stable",
+#                     "clean_data/SSRI_baseline_schedule2_volatile")
+
+## combine schedule1 data and schedule2 data
 combine_schedule("clean_data/SSRI_baseline_schedule1", 
                  "clean_data/SSRI_baseline_schedule2", 
                  "clean_data/SSRI_baseline")
-SSRI_baseline = read.csv("clean_data/SSRI_baseline.csv")
+# SSRI_baseline = read.csv("clean_data/SSRI_baseline.csv")
 
 
 ####### SSRI FollowUp (an extra column in some of the csv files) #####
@@ -141,16 +167,24 @@ wrap_up(schedule_path="schedule2",
         ID_length = 5,
         original_data_path)
 
-## combine schedule1 and schedule2
+### Separate schedule and volatility  ####
 setwd("~/Documents/Rstudio/volatility_composit")
+# separate_volatility("clean_data/SSRI_followup_schedule1", 
+#                     "clean_data/SSRI_followup_schedule1_stable", 
+#                     "clean_data/SSRI_followup_schedule1_volatile")
+# separate_volatility("clean_data/SSRI_followup_schedule2",
+#                     "clean_data/SSRI_followup_schedule2_stable",
+#                     "clean_data/SSRI_followup_schedule2_volatile")
+
+## combine schedule1 and schedule2
 combine_schedule("clean_data/SSRI_followup_schedule1", 
                  "clean_data/SSRI_followup_schedule2", 
                  "clean_data/SSRI_followup")
-SSRI_followup = read.csv("clean_data/SSRI_followup.csv")
+# SSRI_followup = read.csv("clean_data/SSRI_followup.csv")
 
 
 
-####### Health control Baseline (some subjects have two extra rows in the beginning) ######
+####### Healthy control Baseline (some subjects have two extra rows in the beginning) ######
 setwd("~/Documents/Rstudio/volatility_composit/all_data/Control/Baseline")
 # files = exclude_subjects('SSRI/excluded_subs_SSRI_BL', 'SSRI', original_data_path) # 115->107
 files = list.files(pattern="*.csv", full.names = FALSE)
@@ -168,21 +202,31 @@ cluster_schedule(files, file_lists)
 ## wrap up stable and volatile in schedule1 and schedule2
 setwd("~/Documents/Rstudio/volatility_composit/all_data/Control/Baseline/schedule1")
 wrap_up(schedule_path="schedule1", 
-        save_path="~/Documents/Rstudio/volatility_composit/clean_data/Control_baseline_schedule1", 
+        save_path="~/Documents/Rstudio/volatility_composit/clean_data/control_baseline_schedule1", 
         ID_length = 6,
         original_data_path)
 setwd("~/Documents/Rstudio/volatility_composit/all_data/Control/Baseline/schedule2")
 wrap_up(schedule_path="schedule2", 
-        save_path="~/Documents/Rstudio/volatility_composit/clean_data/Control_baseline_schedule2", 
+        save_path="~/Documents/Rstudio/volatility_composit/clean_data/control_baseline_schedule2", 
         ID_length = 6,
         original_data_path)
 
-## combine schedule1 data and schedule2 data
+### Separate schedule and volatility  ####
 setwd("~/Documents/Rstudio/volatility_composit")
-combine_schedule("clean_data/Control_baseline_schedule1", 
-                 "clean_data/Control_baseline_schedule2", 
-                 "clean_data/Control_baseline")
-Control_baseline = read.csv("clean_data/Control_baseline.csv")
+# separate_volatility("clean_data/control_baseline_schedule1", 
+#                     "clean_data/control_baseline_schedule1_stable", 
+#                     "clean_data/control_baseline_schedule1_volatile")
+# separate_volatility("clean_data/control_baseline_schedule2",
+#                     "clean_data/control_baseline_schedule2_stable",
+#                     "clean_data/control_baseline_schedule2_volatile")
+
+## combine schedule
+combine_schedule("clean_data/control_baseline_schedule1", 
+                 "clean_data/control_baseline_schedule2", 
+                 "clean_data/control_baseline")
+# control_baseline = read.csv("clean_data/control_baseline.csv")
+
+
 
 
 ####### Control FollowUp (an extra column in some of the csv files) #####
@@ -204,21 +248,29 @@ cluster_schedule(files, file_lists)
 ## wrap up stable and volatile in schedule1 and schedule2
 setwd("~/Documents/Rstudio/volatility_composit/all_data/Control/FollowUp/schedule1")
 wrap_up(schedule_path="schedule1", 
-        save_path="~/Documents/Rstudio/volatility_composit/clean_data/Control_followup_schedule1", 
+        save_path="~/Documents/Rstudio/volatility_composit/clean_data/control_followup_schedule1", 
         ID_length = 6,
         original_data_path)
 setwd("~/Documents/Rstudio/volatility_composit/all_data/Control/FollowUp/schedule2")
 wrap_up(schedule_path="schedule2", 
-        save_path="~/Documents/Rstudio/volatility_composit/clean_data/Control_followup_schedule2",  
+        save_path="~/Documents/Rstudio/volatility_composit/clean_data/control_followup_schedule2",  
         ID_length = 6,
         original_data_path)
 
-## combine schedule1 and schedule2
+### Separate schedule and volatility  ####
 setwd("~/Documents/Rstudio/volatility_composit")
+# separate_volatility("clean_data/control_followup_schedule1", 
+#                     "clean_data/control_followup_schedule1_stable", 
+#                     "clean_data/control_followup_schedule1_volatile")
+# separate_volatility("clean_data/control_followup_schedule2",
+#                     "clean_data/control_followup_schedule2_stable",
+#                     "clean_data/control_followup_schedule2_volatile")
+
+## combine schedule1 and schedule2
 combine_schedule("clean_data/Control_followup_schedule1", 
                  "clean_data/Control_followup_schedule2", 
-                 "clean_data/Control_followup")
-Control_followup = read.csv("clean_data/Control_followup.csv")
+                 "clean_data/control_followup")
+# control_followup = read.csv("clean_data/control_followup.csv")
 
 
 
